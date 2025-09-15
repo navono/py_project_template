@@ -524,6 +524,7 @@ name = "py-project-temp"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "click" },
     { name = "dask", extra = ["complete", "distributed"] },
     { name = "loguru" },
     { name = "pyyaml" },
@@ -536,6 +537,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "click", specifier = ">=8.2.1" },
     { name = "dask", extras = ["complete", "distributed"], specifier = ">=2025.9.0" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "pyyaml", specifier = ">=6.0.2" },

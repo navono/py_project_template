@@ -160,16 +160,11 @@ class CustomizeLogger:
         filename = config["filename"]
         file_path = config["path"]
 
-        # Get current date and time
-        now = datetime.now()
-        # Format date and time
-        timestamp = now.strftime("%Y%m%d_%H%M")
-        # Use the timestamp as the filename
-        formated_filename = f"{filename}_{timestamp}.log"
+        # Use a consistent filename to allow proper rotation
+        formated_filename = f"{filename}.log"
 
         abs_filepath = os.path.join(os.getcwd(), file_path)
         logger = cls.customize_logging(
-            # config['path'),
             filepath=os.path.join(abs_filepath, formated_filename),
             level=config["level"],
             retention=config["retention"],
