@@ -176,6 +176,15 @@ _tasks:
   - ["echo", "Setting up your Python project...", "blue"]
   - ["echo", "🎉 Template generation complete!", "green"]
 
+_templates_suffix: .jinja
+
+_cleanup_targets:
+  - README.md
+  - pyproject.toml
+  - src/app.py
+  - src/__init__.py
+  - src/main.py
+
 _skip_if_exists:
   - .git/
   - .venv/
