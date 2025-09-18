@@ -2,6 +2,8 @@ import random
 
 from prefect import flow, task
 
+from .utils import Config, CustomizeLogger
+
 
 @task
 def get_customer_ids() -> list[str]:
@@ -23,7 +25,6 @@ async def process_flow():
     results = process_customer.map(customer_ids)
     return results
 
-from .utils import Config, CustomizeLogger
 
 gen_config = Config().get_config()
 logger = CustomizeLogger.make_logger(gen_config["log"])
