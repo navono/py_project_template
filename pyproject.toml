@@ -8,6 +8,7 @@ dependencies = [
     "click>=8.2.1",
     "dask[complete,distributed]>=2025.9.0",
     "loguru>=0.7.3",
+    "prefect>=3.4.18",
     "pyyaml>=6.0.2",
 ]
 
