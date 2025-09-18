@@ -17,13 +17,13 @@ project_name:
   type: str
   help: What is your project name?
   placeholder: my-awesome-project
-  default: py-project-template
+  default: "{{ _copier_conf.dst_path | basename }}"
 
 project_description:
   type: str
   help: What is your project description?
   placeholder: A awesome project description
-  default: Add your description here
+  default: "{{ _copier_conf.dst_path | basename | replace('-', ' ') | replace('_', ' ') | title }} project"
 
 author_name:
   type: str
