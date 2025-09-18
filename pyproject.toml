@@ -1,27 +1,35 @@
 [project]
-name = "py-project-template"
+name = "{{ project_name|replace(' ', '-').lower() }}"
 version = "0.1.0"
-description = "Add your description here"
+description = "{{ project_description }}"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">={{ python_version }}"
 authors = [
-    {name = "", email = ""},
+    {name = "{{ author_name }}", email = "{{ author_email }}"},
 ]
-license = {text = "MIT"}
+license = {text = "{{ license }}"}
 dependencies = [
+{%- if use_click %}
     "click>=8.2.1",
+{%- endif %}
+{%- if use_dask %}
     "dask[complete,distributed]>=2025.9.0",
+{%- endif %}
     "loguru>=0.7.3",
+{%- if use_prefect %}
     "prefect>=3.4.18",
+{%- endif %}
+{%- if use_pydub %}
     "pydub>=0.25.1",
+{%- endif %}
     "pyyaml>=6.0.2",
 ]
 
 [project.scripts]
-py-project-template = "py_project_template.main:main"
+{{ project_name|replace(' ', '-').lower() }} = "{{ project_name|replace(' ', '-').lower() }}.main:main"
 
 [tool.ruff]
-target-version = "py312"
+target-version = "py{{ python_version|replace('.', '') }}"
 line-length = 240
 indent-width = 4
 
