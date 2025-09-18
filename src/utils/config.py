@@ -21,7 +21,16 @@ class Config:
                 current_dir = os.getcwd()
                 logger.debug(f"Current dir: {current_dir}, Loading config file...")
 
-                config_file = "../config/config.yaml" if current_dir.endswith("src") else "./config/config.yaml"
+                # 优先使用开发配置文件
+                if current_dir.endswith("src"):
+                    config_file = "../config/config-dev.yaml"
+                    if not os.path.exists(config_file):
+                        config_file = "../config/config.yaml"
+                else:
+                    config_file = "./config/config-dev.yaml"
+                    if not os.path.exists(config_file):
+                        config_file = "./config/config.yaml"
+
                 logger.debug(f"Using config file path: {config_file}")
 
                 with open(config_file, encoding="utf-8") as f:

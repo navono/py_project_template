@@ -1,27 +1,35 @@
-# py-project-template
+# {{ project_name }}
 
-Add your description here
+{{ project_description }}
 
 ## Features
 
+{%- if use_prefect %}
 - **Prefect** workflow orchestration
+{%- endif %}
+{%- if use_dask %}
 - **Dask** distributed computing
+{%- endif %}
 - **Loguru** structured logging
 - **Ruff** linting and formatting
 - **UV** package management
+{%- if use_click %}
 - **Click** CLI support
+{%- endif %}
+{%- if use_pydub %}
 - **pydub** audio processing
+{%- endif %}
 
 ## Installation
 
 1. **Clone the template:**
    ```bash
-   copier copy <template-source> py-project-template
+   copier copy <template-source> {{ project_name|replace(' ', '-')|lower }}
    ```
 
 2. **Install dependencies:**
    ```bash
-   cd py-project-template
+   cd {{ project_name|replace(' ', '-')|lower }}
    uv sync
    ```
 
@@ -37,6 +45,7 @@ make dev
 make local
 ```
 
+{%- if use_prefect %}
 ### Prefect Operations
 
 ```bash
@@ -68,11 +77,12 @@ make remote-worker-start
 # Deploy to remote server
 make remote-deploy
 ```
+{%- endif %}
 
 ## Project Structure
 
 ```
-py-project-template/
+{{ project_name|replace(' ', '-')|lower }}/
 ├── config/
 │   └── config.yaml          # Configuration file
 ├── src/
@@ -95,9 +105,11 @@ py-project-template/
 
 The configuration is managed through `config/config.yaml`:
 
-- **HTTP Server**: Port 13000
-- **Dask Cluster**: Scheduler port 8786, Dashboard port 8787
-- **Logging**: Level INFO, rotation 1 days, retention 5 days
+- **HTTP Server**: Port {{ http_port }}
+{%- if use_dask %}
+- **Dask Cluster**: Scheduler port {{ dask_scheduler_port }}, Dashboard port {{ dask_dashboard_port }}
+{%- endif %}
+- **Logging**: Level {{ log_level }}, rotation {{ log_rotation }}, retention {{ log_retention }}
 
 ## Development
 
@@ -113,7 +125,14 @@ uv run ruff format .
 
 ### Testing
 
+{%- if include_tests %}
+```bash
+# Run tests
+uv run pytest
+```
+{%- else %}
 To enable testing, set `include_tests: true` when generating the project.
+{%- endif %}
 
 ## Template Variables
 
@@ -147,12 +166,16 @@ This template uses the following variables:
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the {{ license }} License.
 
 ## Acknowledgments
 
 - [Copier](https://copier.readthedocs.io/) for project templating
+{%- if use_prefect %}
 - [Prefect](https://www.prefect.io/) for workflow orchestration
+{%- endif %}
+{%- if use_dask %}
 - [Dask](https://dask.org/) for distributed computing
+{%- endif %}
 - [UV](https://docs.astral.sh/uv/) for package management
 - [Ruff](https://github.com/astral-sh/ruff) for linting and formatting
