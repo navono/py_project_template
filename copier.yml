@@ -174,9 +174,14 @@ license:
 
 _tasks:
   - ["echo", "Setting up your Python project...", "blue"]
+  - ["mv", "config/_config.yaml", "config/config.yaml"]
   - ["echo", "🎉 Template generation complete!", "green"]
 
 _templates_suffix: .jinja
+
+_jinja_extensions:
+  - jinja2.ext.loopcontrols
+  - jinja2.ext.do
 
 _cleanup_targets:
   - README.md
