@@ -3,28 +3,27 @@ dev: false
 
 http:
   host: '0.0.0.0'
-  port: {{ http_port }}
+  port: 13000
 
-{%- if use_dask %}
 cluster:
-  scheduler_port: {{ dask_scheduler_port }}
-  dashboard_address: ':{{ dask_dashboard_port }}'
-  n_workers: {{ n_workers }}  # 启动的进程数
-  threads_per_worker: {{ threads_per_worker }}  # 每个进程的线程数
-{%- endif %}
+  scheduler_port: 8786
+  dashboard_address: ':8787'
+  n_workers: 2  # 启动的进程数
+  threads_per_worker: 1  # 每个进程的线程数
 
 log:
   path: './logs'
   # 日志模块会为 filename 添加相应的后缀
-  filename: '{{ project_name|replace(' ', '_') }}'
-  level: '{{ log_level|lower }}'
-  rotation: '{{ log_rotation }}'
-  retention: '{{ log_retention }}'
+  # 在模板中: filename: '{{ project_name|replace(' ', '_') }}'
+  filename: 'py_project_template'
+  level: 'info'
+  rotation: '1 days'
+  retention: '5 days'
   format: '<level>{level: <8}</level> <green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> - <blue>[{process.id}]</blue> - <cyan>{name}</cyan>:<cyan>{function}</cyan> - <level>{message}</level>'
 
-{%- if prefect_server_url %}
-prefect:
-  server_url: "{{ prefect_server_url }}"
-  api_url: "{{ prefect_api_url }}"
-  work_pool: "{{ prefect_work_pool }}"
-{%- endif %}
+# prefect section: {%- if prefect_server_url %}
+# prefect:
+#   server_url: "{{ prefect_server_url }}"
+#   api_url: "{{ prefect_api_url }}"
+#   work_pool: "{{ prefect_work_pool }}"
+# {%- endif %}
