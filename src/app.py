@@ -30,7 +30,7 @@ async def process_flow():
 
 
 async def start():
-    logger.info("Hello from py-project-temp!")
+    logger.info("Hello from py-project-template!")
     # Run the flow
     results = await process_flow()
     return results
