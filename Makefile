@@ -10,21 +10,25 @@ prefect-reset:
 	uv run prefect config set PREFECT_API_URL=""
 
 prefect-deploy:
-	uv run prefect deploy src/app.py:process_flow --name process-flow-deployment --pool default-agent-pool
+	uv run prefect deploy src/app.py:process_flow --name process-flow-deployment --pool {{ prefect_work_pool }}
 
 prefect-worker:
-	uv run prefect worker start --pool default-agent-pool
+	uv run prefect worker start --pool {{ prefect_work_pool }}
 
 prefect-run:
 	uv run prefect deployment run 'process-flow/process-flow-deployment'
 
 prefect-create-work-pool:
-	uv run prefect work-pool create default-agent-pool --type process
+	uv run prefect work-pool create {{ prefect_work_pool }} --type process
 
 .PHONY: prefect-reset prefect-deploy prefect-worker prefect-run prefect-create-work-pool
 
 # Remote worker setup commands
+{%- if prefect_api_url %}
+PREFECT_API_URL ?= {{ prefect_api_url }}
+{%- else %}
 PREFECT_API_URL ?= http://192.168.8.127:4200/api
+{%- endif %}
 
 remote-worker-setup:
 	@echo "Setting up Prefect worker for remote execution..."
@@ -32,11 +36,11 @@ remote-worker-setup:
 	uv run prefect config set PREFECT_API_URL=$(PREFECT_API_URL)
 
 remote-worker-start:
-	uv run prefect worker start --pool default-agent-pool --api $(PREFECT_API_URL)
+	uv run prefect worker start --pool {{ prefect_work_pool }} --api $(PREFECT_API_URL)
 
 remote-deploy:
 	@echo "Deploying to remote Prefect server at $(PREFECT_API_URL)..."
-	uv run prefect deploy src/app.py:process_flow --name process-flow-deployment --pool default-agent-pool --api $(PREFECT_API_URL)
+	uv run prefect deploy src/app.py:process_flow --name process-flow-deployment --pool {{ prefect_work_pool }} --api $(PREFECT_API_URL)
 
 # Utility commands
 show-ip:

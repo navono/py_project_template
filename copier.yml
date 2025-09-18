@@ -1,0 +1,188 @@
+# ┌─┐┬ ┬┌─┐┌─┐┌┬┐┌─┐  ┌─┐┌─┐┌┬┐┌─┐┌─┐┬┌─┐┬ ┬
+# ├─┘│ │├─┘│ │ ││├─┘  ├─┘│ │ │ │┌─┘│  │├─┘└┬┘
+# ┴  └─┘┴  └─┘─┴┘┴    ┴  └─┘ ┴ └─┘└─┘┴┴  ┴
+#
+# Python project template with Prefect, Dask, and modern tooling
+#
+# 🚀 Features:
+# - Prefect workflow orchestration
+# - Dask distributed computing
+# - Loguru structured logging
+# - Ruff linting and formatting
+# - UV package management
+# - CLI support with Click
+# - Configuration management with YAML
+
+project_name:
+  type: str
+  help: What is your project name?
+  placeholder: my-awesome-project
+  default: py-project-template
+
+project_description:
+  type: str
+  help: What is your project description?
+  placeholder: A awesome project description
+  default: Add your description here
+
+author_name:
+  type: str
+  help: What is your name?
+  placeholder: John Doe
+  default: ""
+
+author_email:
+  type: str
+  help: What is your email?
+  placeholder: john@example.com
+  default: ""
+
+python_version:
+  type: str
+  help: What Python version do you want to use?
+  placeholder: "3.12"
+  default: "3.12"
+  choices:
+    - "3.11"
+    - "3.12"
+    - "3.13"
+
+use_prefect:
+  type: bool
+  help: Do you want to use Prefect for workflow orchestration?
+  default: true
+
+use_dask:
+  type: bool
+  help: Do you want to use Dask for distributed computing?
+  default: true
+
+use_click:
+  type: bool
+  help: Do you want to use Click for CLI?
+  default: true
+
+use_pydub:
+  type: bool
+  help: Do you want to use pydub for audio processing?
+  default: true
+
+http_port:
+  type: int
+  help: What port do you want to use for HTTP server?
+  default: 13000
+
+dask_scheduler_port:
+  type: int
+  help: What port do you want to use for Dask scheduler?
+  default: 8786
+
+dask_dashboard_port:
+  type: int
+  help: What port do you want to use for Dask dashboard?
+  default: 8787
+
+prefect_server_url:
+  type: str
+  help: What is your Prefect server URL? (Leave empty for local mode)
+  placeholder: ""
+  default: ""
+
+prefect_api_url:
+  type: str
+  help: What is your Prefect API URL? (Leave empty for local mode)
+  placeholder: ""
+  default: ""
+
+prefect_work_pool:
+  type: str
+  help: What is your Prefect work pool name?
+  placeholder: default-agent-pool
+  default: default-agent-pool
+
+n_workers:
+  type: int
+  help: How many Dask workers do you want to start?
+  default: 2
+
+threads_per_worker:
+  type: int
+  help: How many threads per Dask worker?
+  default: 1
+
+log_level:
+  type: str
+  help: What log level do you want to use?
+  default: "INFO"
+  choices:
+    - "DEBUG"
+    - "INFO"
+    - "WARNING"
+    - "ERROR"
+    - "CRITICAL"
+
+log_rotation:
+  type: str
+  help: How often do you want to rotate logs?
+  default: "1 days"
+  choices:
+    - "1 hours"
+    - "1 days"
+    - "1 weeks"
+    - "1 months"
+
+log_retention:
+  type: str
+  help: How long do you want to keep logs?
+  default: "5 days"
+  choices:
+    - "1 days"
+    - "5 days"
+    - "1 weeks"
+    - "1 months"
+
+include_tests:
+  type: bool
+  help: Do you want to include tests directory?
+  default: false
+
+include_docs:
+  type: bool
+  help: Do you want to include docs directory?
+  default: false
+
+include_docker:
+  type: bool
+  help: Do you want to include Docker support?
+  default: false
+
+include_github_actions:
+  type: bool
+  help: Do you want to include GitHub Actions?
+  default: false
+
+license:
+  type: str
+  help: What license do you want to use?
+  default: "MIT"
+  choices:
+    - "MIT"
+    - "Apache-2.0"
+    - "GPL-3.0"
+    - "BSD-3-Clause"
+    - "None"
+
+_tasks:
+  - ["echo", "Setting up your Python project...", "blue"]
+  - ["echo", "🎉 Template generation complete!", "green"]
+
+_skip_if_exists:
+  - .git/
+  - .venv/
+  - venv/
+  - __pycache__/
+  - "*.pyc"
+  - "*.pyo"
+  - "*.pyd"
+  - .DS_Store
+  - Thumbs.db
