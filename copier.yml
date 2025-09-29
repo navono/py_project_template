@@ -47,11 +47,6 @@ python_version:
     - "3.12"
     - "3.13"
 
-use_prefect:
-  type: bool
-  help: Do you want to use Prefect for workflow orchestration?
-  default: true
-
 use_dask:
   type: bool
   help: Do you want to use Dask for distributed computing?
@@ -60,11 +55,6 @@ use_dask:
 use_click:
   type: bool
   help: Do you want to use Click for CLI?
-  default: true
-
-use_pydub:
-  type: bool
-  help: Do you want to use pydub for audio processing?
   default: true
 
 http_port:
@@ -82,24 +72,6 @@ dask_dashboard_port:
   help: What port do you want to use for Dask dashboard?
   default: 8787
 
-prefect_server_url:
-  type: str
-  help: What is your Prefect server URL? (Leave empty for local mode)
-  placeholder: ""
-  default: ""
-
-prefect_api_url:
-  type: str
-  help: What is your Prefect API URL? (Leave empty for local mode)
-  placeholder: ""
-  default: ""
-
-prefect_work_pool:
-  type: str
-  help: What is your Prefect work pool name?
-  placeholder: default-agent-pool
-  default: default-agent-pool
-
 n_workers:
   type: int
   help: How many Dask workers do you want to start?
@@ -108,7 +80,6 @@ n_workers:
 threads_per_worker:
   type: int
   help: How many threads per Dask worker?
-  default: 1
 
 log_level:
   type: str

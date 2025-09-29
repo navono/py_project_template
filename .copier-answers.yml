@@ -11,20 +11,13 @@ python_version: "3.12"
 license: MIT
 
 # Feature flags
-use_prefect: true
 use_dask: true
 use_click: true
-use_pydub: true
 
 # Network configuration
 http_port: 13000
 dask_scheduler_port: 8786
 dask_dashboard_port: 8787
-
-# Prefect configuration
-prefect_server_url: ""
-prefect_api_url: ""
-prefect_work_pool: default-agent-pool
 
 # Dask configuration
 n_workers: 2

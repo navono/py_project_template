@@ -1,4 +1,4 @@
-# py-project-template
+# Python Project Template
 
 Add your description here
 
@@ -14,16 +14,35 @@ Add your description here
 
 ## Installation
 
-1. **Clone the template:**
+### 使用 Copier 克隆模板
+
+1. **从 Git 仓库克隆模板:**
+
    ```bash
    copier copy <template-source> py-project-template
    ```
 
-2. **Install dependencies:**
+2. **从本地目录克隆模板:**
+
+   ```bash
+   copier copy /path/to/local/template py-project-template
+   ```
+
+3. **安装依赖:**
    ```bash
    cd py-project-template
    uv sync
    ```
+
+### 主要功能
+
+- **Prefect** 工作流编排
+- **Dask** 分布式计算
+- **Loguru** 结构化日志
+- **Ruff** 代码检查和格式化
+- **UV** 包管理
+- **Click** CLI 支持
+- **pydub** 音频处理
 
 ## Usage
 
@@ -35,38 +54,6 @@ make dev
 
 # Run locally (without Prefect server)
 make local
-```
-
-### Prefect Operations
-
-```bash
-# Reset Prefect to local mode
-make prefect-reset
-
-# Create work pool
-make prefect-create-work-pool
-
-# Start worker
-make prefect-worker
-
-# Deploy flow
-make prefect-deploy
-
-# Run deployed flow
-make prefect-run
-```
-
-### Remote Setup
-
-```bash
-# Setup remote worker
-make remote-worker-setup
-
-# Start remote worker
-make remote-worker-start
-
-# Deploy to remote server
-make remote-deploy
 ```
 
 ## Project Structure
@@ -119,23 +106,23 @@ To enable testing, set `include_tests: true` when generating the project.
 
 This template uses the following variables:
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `project_name` | Project name | `py-project-template` |
-| `project_description` | Project description | `Add your description here` |
-| `author_name` | Author name | `""` |
-| `author_email` | Author email | `""` |
-| `python_version` | Python version | `3.12` |
-| `use_prefect` | Enable Prefect | `true` |
-| `use_dask` | Enable Dask | `true` |
-| `use_click` | Enable Click CLI | `true` |
-| `use_pydub` | Enable pydub | `true` |
-| `http_port` | HTTP server port | `13000` |
-| `dask_scheduler_port` | Dask scheduler port | `8786` |
-| `dask_dashboard_port` | Dask dashboard port | `8787` |
-| `log_level` | Logging level | `INFO` |
-| `log_rotation` | Log rotation period | `1 days` |
-| `log_retention` | Log retention period | `5 days` |
+| Variable              | Description          | Default                     |
+| --------------------- | -------------------- | --------------------------- |
+| `project_name`        | Project name         | `py-project-template`       |
+| `project_description` | Project description  | `Add your description here` |
+| `author_name`         | Author name          | `""`                        |
+| `author_email`        | Author email         | `""`                        |
+| `python_version`      | Python version       | `3.12`                      |
+| `use_prefect`         | Enable Prefect       | `true`                      |
+| `use_dask`            | Enable Dask          | `true`                      |
+| `use_click`           | Enable Click CLI     | `true`                      |
+| `use_pydub`           | Enable pydub         | `true`                      |
+| `http_port`           | HTTP server port     | `13000`                     |
+| `dask_scheduler_port` | Dask scheduler port  | `8786`                      |
+| `dask_dashboard_port` | Dask dashboard port  | `8787`                      |
+| `log_level`           | Logging level        | `INFO`                      |
+| `log_rotation`        | Log rotation period  | `1 days`                    |
+| `log_retention`       | Log retention period | `5 days`                    |
 
 ## Contributing
 
