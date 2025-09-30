@@ -80,6 +80,7 @@ n_workers:
 threads_per_worker:
   type: int
   help: How many threads per Dask worker?
+  default: 1
 
 log_level:
   type: str
