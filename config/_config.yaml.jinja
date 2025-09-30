@@ -5,14 +5,13 @@ http:
   host: '0.0.0.0'
   port: {{ http_port }}
 
-
-{%- if use_dask %}
+{% if use_dask %}
 cluster:
   scheduler_port: {{ dask_scheduler_port }}
   dashboard_address: ':{{ dask_dashboard_port }}'
   n_workers: {{ n_workers }}  # 启动的进程数
   threads_per_worker: {{ threads_per_worker }}  # 每个进程的线程数
-{%- endif %}
+{% endif %}
 
 log:
   path: './logs'
