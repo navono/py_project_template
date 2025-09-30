@@ -4,9 +4,6 @@
 
 ## Features
 
-{%- if use_prefect %}
-- **Prefect** workflow orchestration
-{%- endif %}
 {%- if use_dask %}
 - **Dask** distributed computing
 {%- endif %}
@@ -40,29 +37,6 @@
 ```bash
 # Start the development server
 make dev
-
-# Run locally (without Prefect server)
-make local
-```
-
-{%- if use_prefect %}
-### Prefect Operations
-
-```bash
-# Reset Prefect to local mode
-make prefect-reset
-
-# Create work pool
-make prefect-create-work-pool
-
-# Start worker
-make prefect-worker
-
-# Deploy flow
-make prefect-deploy
-
-# Run deployed flow
-make prefect-run
 ```
 
 ### Remote Setup
@@ -77,7 +51,6 @@ make remote-worker-start
 # Deploy to remote server
 make remote-deploy
 ```
-{%- endif %}
 
 ## Project Structure
 
@@ -145,7 +118,6 @@ This template uses the following variables:
 | `author_name` | Author name | `""` |
 | `author_email` | Author email | `""` |
 | `python_version` | Python version | `3.12` |
-| `use_prefect` | Enable Prefect | `true` |
 | `use_dask` | Enable Dask | `true` |
 | `use_click` | Enable Click CLI | `true` |
 | `use_pydub` | Enable pydub | `true` |
@@ -171,9 +143,6 @@ This project is licensed under the {{ license }} License.
 ## Acknowledgments
 
 - [Copier](https://copier.readthedocs.io/) for project templating
-{%- if use_prefect %}
-- [Prefect](https://www.prefect.io/) for workflow orchestration
-{%- endif %}
 {%- if use_dask %}
 - [Dask](https://dask.org/) for distributed computing
 {%- endif %}

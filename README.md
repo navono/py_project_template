@@ -4,7 +4,6 @@ Add your description here
 
 ## Features
 
-- **Prefect** workflow orchestration
 - **Dask** distributed computing
 - **Loguru** structured logging
 - **Ruff** linting and formatting
@@ -36,13 +35,11 @@ Add your description here
 
 ### 主要功能
 
-- **Prefect** 工作流编排
 - **Dask** 分布式计算
 - **Loguru** 结构化日志
 - **Ruff** 代码检查和格式化
 - **UV** 包管理
 - **Click** CLI 支持
-- **pydub** 音频处理
 
 ## Usage
 
@@ -51,9 +48,6 @@ Add your description here
 ```bash
 # Start the development server
 make dev
-
-# Run locally (without Prefect server)
-make local
 ```
 
 ## Project Structure
@@ -113,10 +107,8 @@ This template uses the following variables:
 | `author_name`         | Author name          | `""`                        |
 | `author_email`        | Author email         | `""`                        |
 | `python_version`      | Python version       | `3.12`                      |
-| `use_prefect`         | Enable Prefect       | `true`                      |
 | `use_dask`            | Enable Dask          | `true`                      |
 | `use_click`           | Enable Click CLI     | `true`                      |
-| `use_pydub`           | Enable pydub         | `true`                      |
 | `http_port`           | HTTP server port     | `13000`                     |
 | `dask_scheduler_port` | Dask scheduler port  | `8786`                      |
 | `dask_dashboard_port` | Dask dashboard port  | `8787`                      |
@@ -139,7 +131,6 @@ This project is licensed under the MIT License.
 ## Acknowledgments
 
 - [Copier](https://copier.readthedocs.io/) for project templating
-- [Prefect](https://www.prefect.io/) for workflow orchestration
 - [Dask](https://dask.org/) for distributed computing
 - [UV](https://docs.astral.sh/uv/) for package management
 - [Ruff](https://github.com/astral-sh/ruff) for linting and formatting
