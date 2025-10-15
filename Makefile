@@ -21,7 +21,7 @@ check:
 # Git hooks
 install-hooks:
 	mkdir -p .git/hooks
-	cp -f scripts/pre-commit .git/hooks/
+	cp -f scripts/pre-commit.sh .git/hooks/
 	chmod +x .git/hooks/pre-commit.sh
 	@echo "Git pre-commit hook installed successfully."
 
