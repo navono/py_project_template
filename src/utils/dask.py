@@ -142,22 +142,22 @@ class DaskClientSingleton:
 
 class Counter(WorkerPlugin):
     def __init__(self, worker1_address):
-        print(f"XXXXXXXXXX Counter init: {worker1_address}")
+        logger.info(f"XXXXXXXXXX Counter init: {worker1_address}")
         self.worker1_address = worker1_address
 
     def setup(self, worker):
         if worker.address == self.worker1_address:
-            print(f"XXXXXXXXXX Counter setup, worker: {worker}")
+            logger.info(f"XXXXXXXXXX Counter setup, worker: {worker}")
             self.counter = 10
             worker.data["counter"] = self.counter
 
     def teardown(self, worker):
         if worker.address == self.worker1_address:
-            print(f"XXXXXXXXXX Counter teardown, worker: {worker}")
+            logger.info(f"XXXXXXXXXX Counter teardown, worker: {worker}")
             self.counter = 0
 
     def transition(self, key, start, finish, *args, **kwargs):
-        print(f"XXXXXXXXXX Counter transition, start: {start}")
+        logger.info(f"XXXXXXXXXX Counter transition, start: {start}")
         if start == "executing":
             self.counter += 1
 
@@ -167,12 +167,11 @@ class MyWebSocketPlugin(WorkerPlugin):
         self.base_ws_url = base_ws_url
         self.ws_connection = None
         self.worker_name = None
-        print("MyWebSocketPlugin: Plugin instance created.")
+        logger.info("MyWebSocketPlugin: Plugin instance created.")
 
     async def setup(self, worker):
         """在 Worker 启动时调用"""
         self.worker_name = worker.name
-        ws_url = f"{self.base_ws_url}worker_{self.worker_name}"
         # self.ws_connection = WebSocketConnection(ws_url)
         await self.ws_connection.connect()
 
@@ -180,13 +179,13 @@ class MyWebSocketPlugin(WorkerPlugin):
         # 推荐将资源直接挂载到 worker.data 字典中
         worker.data["ws_connection"] = self.ws_connection
         worker.data["plugin_initialized"] = True
-        print(f"MyWebSocketPlugin on {self.worker_name}: Setup complete.")
+        logger.info(f"MyWebSocketPlugin on {self.worker_name}: Setup complete.")
 
     async def teardown(self, worker):
         """在 Worker 关闭时调用"""
         if self.ws_connection:
             await self.ws_connection.close()
-        print(f"MyWebSocketPlugin on {self.worker_name}: Teardown complete.")
+        logger.info(f"MyWebSocketPlugin on {self.worker_name}: Teardown complete.")
 
     # 可以在这里添加其他生命周期方法，例如：
     # async def transition(self, key, start, finish, **kwargs):
@@ -202,7 +201,7 @@ def init_dask():
     client = singleton.get_client()
     worker_addresses = list(client.scheduler_info()["workers"].keys())
     worker1_address = worker_addresses[0]
-    print(f"Available Worker Addresses: {worker_addresses}")
+    logger.info(f"Available Worker Addresses: {worker_addresses}")
 
     client.register_worker_plugin(Counter(worker1_address), "counter")
 
